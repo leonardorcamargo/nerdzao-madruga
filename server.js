@@ -4,28 +4,22 @@ const mongo = require('mongodb');
 async function main() {
 	const app = express();
 	try{
-		// const connection = await mongo.connect(
-		// 	'mongodb://ronaldinho:nerdzao1@ds213832.mlab.com:13832/'
-		// );
-		// const db = connection.db('nerdzao-rick-and-morty');
-		// const characters = db.collection('characteres');
-		const personagens = [
-			{
-				nome: "Rick Sanchez",
-				dimension: "C-137",
-			},
-			{
-				nome: "Morty Smith",
-				dimension: "C-137",
-			}
-		];
+		const clienteDoBanco = 
+			await mongo.connect('mongodb://ronaldinho:nerdzao1@ds213832.mlab.com:13832/nerdzao-rick-and-morty', {
+					useNewUrlParser: true,
+			});
+		
+		
+		const bancoDeDados = clienteDoBanco.db('nerdzao-rick-and-morty');
+		const personagens = await bancoDeDados.collection('characters');
 
-		app.get('/', (req, res) => {
-			res.send('GET /personagens');
+		// Vai permitir que nossa aplicação escute o pedido
+		// de personagens
+		app.get('/personagens', async (requisicao, resposta) => {
+				const todosOsPersonagens = await personagens.find().toArray();
+				resposta.send(todosOsPersonagens);
 		});
-		app.get('/personagens', async (req, res) => {
-			res.send(personagens);
-		});
+		
 		app.listen(3000, () => console.log('Escutando na porta 3000'));
 	} catch(e) {
 		console.log(e);
