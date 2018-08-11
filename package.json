@@ -1,0 +1,24 @@
+{
+  "name": "nerdzao-madruga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardorcamargo/nerdzao-madruga.git"
+  },
+  "author": "Leonardo Romano Camargo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonardorcamargo/nerdzao-madruga/issues"
+  },
+  "homepage": "https://github.com/leonardorcamargo/nerdzao-madruga#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.1"
+  }
+}
